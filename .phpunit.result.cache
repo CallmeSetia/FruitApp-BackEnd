@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Services\\UserServicesTest::testGetUserAdmin":8,"Http\\Controllers\\Api\\UserAdminApiControllerTest::testIndex":8},"times":{"Services\\UserServicesTest::testGetUserAdmin":0.101,"Http\\Controllers\\Api\\UserAdminApiControllerTest::testIndex":0.099}}
