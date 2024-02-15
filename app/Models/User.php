@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +21,11 @@ class User extends Authenticatable implements LaratrustUser, JWTSubject
      * @var array<int, string>
      */
     protected $fillable = [
+        'avatar',
+        'address',
+        'age',
+        'phone',
+        'gender',
         'name',
         'username',
         'email',
@@ -43,7 +47,10 @@ class User extends Authenticatable implements LaratrustUser, JWTSubject
     protected $hidden = [
         'password',
         'remember_token',
-        'roles'
+        'email_verified_at',
+        'created_at',
+        'updated_at',
+//        'roles'
     ];
 
     /**
@@ -75,12 +82,7 @@ class User extends Authenticatable implements LaratrustUser, JWTSubject
         return [];
     }
 
-
-    public function licenseManager() {
-        return  $this->hasMany(LicenseManager::class);
-    }
-
-    public function product() {
-        return  $this->hasOne(Product::class, 'created_by');
+    public function transaction_detail() {
+        return $this->hasMany(TransactionDetail::class, 'user_id');
     }
 }
