@@ -3,11 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Faker\Factory as Faker;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Faker\Factory as Faker;
-$faker = Faker::create();
-class UserDefaultAdminSeeder extends Seeder
+
+class UsersSuperAdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,25 +23,11 @@ class UserDefaultAdminSeeder extends Seeder
             'phone' => $faker->phoneNumber,
             'gender' => $faker->randomElement(['male', 'female']),
             'name' => $faker->name,
-            'username' => 'superuser',
-            'email' => 'superadmin@example.com',
+            'username' => $faker->userName,
+            'email' => $faker->email,
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
         ]);
         $user_superadmin->addRole('superuser');
-
-        $user_admin = User::create([
-            'avatar' => $faker->imageUrl(),
-            'address' => $faker->address,
-            'age' => $faker->numberBetween(18, 60),
-            'phone' => $faker->phoneNumber,
-            'gender' => $faker->randomElement(['male', 'female']),
-            'name' => $faker->name,
-            'username' => 'admin',
-            'email' => 'admin@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-        ]);
-        $user_admin->addRole('admin');
     }
 }
