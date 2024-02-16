@@ -12,4 +12,10 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => (new \App\Util\Permission)->getLaratrustPermissions(),
+    'permissions_map' => [
+        'c' => 'create',
+        'r' => 'read',
+        'u' => 'update',
+        'd' => 'delete'
+    ],
 ];
