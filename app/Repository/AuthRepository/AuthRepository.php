@@ -17,28 +17,12 @@ class AuthRepository implements AuthRepositoryInterface
         $token = Auth::attempt($credentials);
 
         if (!$token) return false;
-
         $user = Auth::user();
         $user->token = $token;
 
         return $user;
     }
 
-    public function loginLicensedUser($request)
-    {
-        $onlyColumn = [
-            'username',
-            'password',
-        ];
-        $credentials = $request->only($onlyColumn);
-        $token = Auth::guard('licensed_users')->attempt($credentials);
-        if (!$token) return false;
-
-        $user = Auth::guard('licensed_users')->user();
-        $user->token = $token;
-
-        return $user;
-    }
 
     public function logoutAdmin()
     {
@@ -47,12 +31,6 @@ class AuthRepository implements AuthRepositoryInterface
         return true;
     }
 
-    public function logoutLicensedUser()
-    {
-        if (!$this->checkIsLoginLicensedUser()) return false;
-        Auth::logout();
-        return true;
-    }
 
     public function refreshAdmin($request)
     {
@@ -60,15 +38,6 @@ class AuthRepository implements AuthRepositoryInterface
         $user = Auth::refresh();
         return $user;
     }
-
-    public function refreshLicensedUser($request)
-    {
-        if (!$this->checkIsLoginLicensedUser()) return false;
-
-        $user = Auth::refresh();
-        return $user;
-    }
-
 
 
     public function getUserAuth()
@@ -82,10 +51,6 @@ class AuthRepository implements AuthRepositoryInterface
         if (!$user) return false;
         return true;
     }
-    public function checkIsLoginLicensedUser() {
-        $user = Auth::guard('licensed_users')->check();
-        if (!$user) return false;
-        return true;
-    }
+
 
 }
