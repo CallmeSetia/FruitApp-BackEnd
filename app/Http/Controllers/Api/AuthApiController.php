@@ -20,13 +20,43 @@ class AuthApiController extends Controller
     {
         $this->authService = $AuthServices;
     }
+    /**
+     * @OA\Post(
+     *     path="/api/login",
+     *     summary="Login as admin",
+     *     tags={"Authentication"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful login",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="data", type="object", example={}),
+     *             @OA\Property(property="message", type="string", example="Login successful")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Invalid credentials")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Internal Server Error")
+     *         )
+     *     )
+     * )
+     */
 
-    public function login($type, LoginRequest $request)
+    public function login( LoginRequest $request)
     {
         try {
-            $user = $type == self::USER_TYPE_LICENSE
-                ? $this->authService->loginLicenseUser($request)
-                : $this->authService->loginAdmin($request);
+            $user = $this->authService->loginAdmin($request);
 
             return (!$user)
                 ? $this->sendError($user, Messages::AUTH_LOGIN_FAILURE)
@@ -37,26 +67,52 @@ class AuthApiController extends Controller
             return $this->sendError(null, $e->getMessage());
         }
     }
-
+    /**
+     * @OA\Post(
+     *     path="/api/logout/admin",
+     *     summary="Logout as admin",
+     *     tags={"Authentication"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful logout",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="data", type="object", example={}),
+     *             @OA\Property(property="message", type="string", example="Logout successful")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Invalid token")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=500,
+     *         description="Internal Server Error",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="success", type="boolean", example=false),
+     *             @OA\Property(property="message", type="string", example="Internal Server Error")
+     *         )
+     *     )
+     * )
+     */
     public function logoutAdmin() {
-        return $this->logout(self::USER_TYPE_ADMIN);
+        return $this->logout();
     }
 
-    public function logoutLicense() {
-        return $this->logout(self::USER_TYPE_LICENSE);
-    }
 
-    private function logout($type)
+    private function logout()
     {
         try {
-            $user = $type == self::USER_TYPE_LICENSE
-                ?  $this->authService->logoutLicensedUser()
-                :  $this->authService->logoutAdmin() ;
+            $user =  $this->authService->logoutAdmin() ;
 
-            if (!$user)
-                return $this->sendError($user, Messages::AUTH_LOGOUT_FAILURE);
-
-            return $this->sendResponse($user, Messages::AUTH_LOGOUT_SUCCESS);
+            return (!$user)
+               ? $this->sendError($user, Messages::AUTH_LOGOUT_FAILURE)
+               : $this->sendResponse($user, Messages::AUTH_LOGOUT_SUCCESS);
         } catch (Exception $e) {
             // Handle general exceptions
             return $this->sendError(null, $e->getMessage());

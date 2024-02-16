@@ -18,4 +18,3 @@ use Illuminate\Support\Facades\Route;
 // Auth::routes();
 
 Route::get('/{any?}', [HomeController::class, 'show'])->where('any', '^(?!api\/)[\/\w\.-]*');
-    
