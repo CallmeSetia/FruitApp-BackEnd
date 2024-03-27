@@ -29,6 +29,8 @@ import 'vue-good-table-next/dist/vue-good-table-next.css'
  * to use in your application's views. An example is included for you.
  */
 
+import './axios'
+
 const app = createApp({});
 
 app.component("example-component", App);
