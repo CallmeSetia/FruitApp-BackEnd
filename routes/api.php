@@ -24,6 +24,15 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/user/admin', [\App\Http\Controllers\Api\UserAdminApiController::class, 'updateAdmin']);
     Route::delete('/user/admin', [\App\Http\Controllers\Api\UserAdminApiController::class, 'deleteAdmin']);
 
+    Route::get('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'index']);
+    Route::post('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'createAdmin']);
+    Route::put('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'updateAdmin']);
+    Route::delete('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'deleteAdmin']);
+
+
+
+
+
 //    Route::get('/product', [\App\Http\Controllers\Api\ProductApiController::class, 'indexProduct']);
 //    Route::post('/product', [\App\Http\Controllers\Api\ProductApiController::class, 'createProduct']);
 //    Route::put('/product', [\App\Http\Controllers\Api\ProductApiController::class, 'updateProduct']);
