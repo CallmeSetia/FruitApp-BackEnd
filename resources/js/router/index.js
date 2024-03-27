@@ -16,7 +16,11 @@ const routes = [
         meta: { title: 'Login' },
         component: () => import('../views/account/login.vue')
     },
-
+    {
+        path: '/users/admin',
+        meta: { authRequired: false, title: 'Admin Page' },
+        component: () => import('../views/users/admin.vue')
+    },
     {
         path: '/pages/starter',
         meta: { authRequired: true, title: 'Starter Page' },

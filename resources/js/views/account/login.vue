@@ -1,6 +1,6 @@
 <script>
 import profileImg from '../../../images/profile-img.png';
-import logo from '../../../images/logo.svg';
+import logo from '../../../images/logo_zaj.png';
 import axios from 'axios';
 
 /**
@@ -82,7 +82,7 @@ export default {
                                     </div>
                                 </BCol>
                                 <BCol class="align-self-end" cols="5">
-                                    <img :src="profileImg" alt class="img-fluid"/>
+                                    <img :src="logo" alt class="img-fluid"/>
                                 </BCol>
                             </BRow>
                         </div>

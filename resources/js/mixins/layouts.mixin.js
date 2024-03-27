@@ -5,8 +5,8 @@ export default {
                 type: "vertical",
                 sidebar: "dark",
                 width: "fluid",
-                topbar: "dark",
-                mode: "dark",
+                topbar: "light",
+                mode: "light",
                 loader: true
             }
         };

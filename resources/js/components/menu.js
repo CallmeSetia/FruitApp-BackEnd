@@ -24,7 +24,7 @@ export const menuItems = [
         id: 47,
         label: "User Admin",
         icon: "bx-user-circle",
-        link: "/",
+        link: "/users/admin",
     },
     {
         id: 48,
