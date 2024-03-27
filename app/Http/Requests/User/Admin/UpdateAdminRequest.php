@@ -42,7 +42,7 @@ class UpdateAdminRequest extends FormRequest
                 Rule::unique('user', 'email')->ignore($userId),
                 'max:255',
             ],
-            'password' => 'required|',
+//            'password' => 'required|',
             'role' => [
                 'required',
                 Rule::in(['superuser', 'admin'])
