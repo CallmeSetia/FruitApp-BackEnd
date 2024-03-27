@@ -8,7 +8,10 @@ import Swal from "sweetalert2";
 
 /**
  * Dashboard Component
+ *
  */
+
+// TODO : OPTION SELECT SAAT CREATE
 export default {
     page: {
         title: "Data Admin",
@@ -94,7 +97,7 @@ export default {
             },
             kategoris: [
                 { value: "admin", text: "ADMIN" },
-                { value: "superuser", text: "SUPER ADMIN" },
+                { value: "superuser", text: "SUPER ADMIN/SUPER USER" },
             ],
         };
     },
@@ -187,7 +190,7 @@ export default {
                 name: data.name,
                 username: data.username,
                 password: null,
-                role: "admin",
+                role: data.role,
             };
 
             switch (type) {
@@ -255,6 +258,7 @@ export default {
             handler(val) {
                 if (!val) {
                     this.form = {
+                        id : null,
                         name: "",
                         username: "",
                         password: null,
@@ -268,6 +272,7 @@ export default {
             handler(val) {
                 if (!val) {
                     this.form = {
+                        id : null,
                         name: "",
                         username: "",
                         password: null,
@@ -287,7 +292,7 @@ export default {
 
 <template>
     <Layout>
-        <PageHeader :title="title" :items="items" />
+<!--        <PageHeader :title="title" :items="items" />-->
 
         <b-card
             title="Data User Admin"
@@ -410,7 +415,7 @@ export default {
                             >
                                 <BFormSelect v-model="form.role" :options="roles" >
                                     <option value="admin">Admin</option>
-                                    <option value="super_admin">Super Admin</option>
+                                    <option value="superuser">SUPER ADMIN/SUPER USER</option>
                                 </BFormSelect>
                                 <BAlert
                                     :model-value="true"
