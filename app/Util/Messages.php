@@ -23,9 +23,17 @@ class Messages {
     const USER_ADMIN_UPDATE_FAILURE = 'Gagal memperbarui pengguna admin.';
     const USER_ADMIN_DELETE_SUCCESS = 'Pengguna admin berhasil dihapus.';
     const USER_ADMIN_DELETE_FAILURE = 'Gagal menghapus pengguna admin.';
-
     const USER_ADMIN_READ_SUCCESS = 'Berhasil mendapatkan data pengguna admin.';
     const USER_ADMIN_READ_FAILURE = 'Gagal mendapatkan data pengguna admin.';
 
+    // Customer Messages
+    const USER_CUSTOMER_CREATE_SUCCESS = 'Pelanggan berhasil dibuat.';
+    const USER_CUSTOMER_CREATE_FAILURE = 'Gagal membuat pelanggan.';
+    const USER_CUSTOMER_UPDATE_SUCCESS = 'Pelanggan berhasil diperbarui.';
+    const USER_CUSTOMER_UPDATE_FAILURE = 'Gagal memperbarui pelanggan.';
+    const USER_CUSTOMER_DELETE_SUCCESS = 'Pelanggan berhasil dihapus.';
+    const USER_CUSTOMER_DELETE_FAILURE = 'Gagal menghapus pelanggan.';
+    const USER_CUSTOMER_READ_SUCCESS = 'Berhasil mendapatkan data pelanggan.';
+    const USER_CUSTOMER_READ_FAILURE = 'Gagal mendapatkan data pelanggan.';
 
 }
