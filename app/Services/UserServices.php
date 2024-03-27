@@ -29,6 +29,7 @@ class UserServices
     public function getUserAdmin($request)
     {
         $user = $this->authServices->getAuthUser();
+        $request->merge(['role' => 'admin']);
 
         $roles = [
             $this->getRolesUser($user)
@@ -37,14 +38,34 @@ class UserServices
         $permissions = [
             'user-superuser-read',
             'user-admin-read',
-            'user-license-read'
         ];
 
         $options = [
-            'validate_all' => true, //Default: false
+            'validate_all' => false, //Default: false
             'return_type' => 'boolean' //Default: 'boolean'. You can also set it as 'both'
         ];
 
+        return $user->ability($roles, $permissions, $options)
+            ? $this->userRepo->get($request)
+            : throw new Exception(Messages::PERMISSION_ERROR);
+    }
+    public function getUserCustomer($request)
+    {
+        $user = $this->authServices->getAuthUser();
+        $request->merge(['role' => 'customer']);
+
+        $roles = [
+            $this->getRolesUser($user)
+        ];
+
+        $permissions = [
+            'user-customer-read',
+        ];
+
+        $options = [
+            'validate_all' => false, //Default: false
+            'return_type' => 'boolean' //Default: 'boolean'. You can also set it as 'both'
+        ];
 
         return $user->ability($roles, $permissions, $options)
             ? $this->userRepo->get($request)
@@ -73,11 +94,10 @@ class UserServices
         $permissions = [
             'user-superuser-read',
             'user-admin-read',
-            'user-license-read'
         ];
 
         $options = [
-            'validate_all' => true, //Default: false
+            'validate_all' => false, //Default: false
             'return_type' => 'boolean' //Default: 'boolean'. You can also set it as 'both'
         ];
 
@@ -102,11 +122,10 @@ class UserServices
         $permissions = [
             'superuser' => 'user-superuser-create',
             'admin' => 'user-admin-create',
-            'license' => 'user-license-create'
         ];
 
         $options = [
-            'validate_all' => true,
+            'validate_all' => false,
             'return_type' => 'boolean'
         ];
 
@@ -137,11 +156,10 @@ class UserServices
         $permissions = [
             'superuser' => 'user-superuser-update',
             'admin' => 'user-admin-update',
-            'license' => 'user-license-update'
         ];
 
         $options = [
-            'validate_all' => true,
+            'validate_all' => false,
             'return_type' => 'boolean'
         ];
 
@@ -173,11 +191,10 @@ class UserServices
         $permissions = [
             'superuser' => 'user-superuser-delete',
             'admin' => 'user-admin-delete',
-            'license' => 'user-license-delete'
         ];
 
         $options = [
-            'validate_all' => true,
+            'validate_all' => false,
             'return_type' => 'boolean'
         ];
 

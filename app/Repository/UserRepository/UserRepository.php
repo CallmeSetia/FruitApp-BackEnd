@@ -22,13 +22,20 @@ class UserRepository implements UserRepositoryInterface
             'updated_at',
         ];
 
-        if ($request->only($onlyColumn)) {
+        if (!$request->filled('role')) { // Only Column
             $user_admin = $user_admin->where($request->only($onlyColumn));
+        }
+        if ($request->role == 'admin' || $request->role == 'superuser') {
+            $user_admin = $user_admin->whereHasRole(['admin', 'superuser']);
+        }
+        if ($request->role == 'customer') {
+            $user_admin = $user_admin->whereHasRole(['customer']);
         }
         if ($request->include) {
             $relation = array_filter(explode(',', str_replace(" ", "", $request->include)));
             $user_admin = $user_admin->with($relation);
         }
+
         $user_admin = $user_admin->get();
         $user_admin->each(function ($user) {
             $user->role = $user->roles->first()->name;
@@ -39,7 +46,7 @@ class UserRepository implements UserRepositoryInterface
     public function create($request)
     {
         $onlyColumn = [
-//            'id', Kolom id Auto Increment
+//            'id', // Kolom id Auto Increment
             'name',
             'username',
             'email',

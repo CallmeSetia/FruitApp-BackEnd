@@ -25,8 +25,8 @@ class CreateAdminRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'username' => 'required|unique:user,username|max:255',
-            'email' => 'sometimes|email|unique:user,email|max:255',
-            'password' => 'required|min:8',
+//            'email' => 'sometimes|email|unique:user,email|max:255',
+            'password' => 'required',
             'role' => 'required|in:superuser,admin',
         ];
     }
