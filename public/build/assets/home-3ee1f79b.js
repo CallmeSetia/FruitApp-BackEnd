@@ -1,0 +1,1 @@
+import{L as t}from"./main-ff6b0d8a.js";import{_ as e,r,c as n,o as s}from"../js/app2.js";import"./logo-dark-ebbb2157.js";import"./avatar-1-15b743f1.js";import"./logo-9faa3827.js";const c={components:{Layout:t}};function a(p,m,_,i,f,u){const o=r("Layout");return s(),n(o)}const y=e(c,[["render",a]]);export{y as default};
