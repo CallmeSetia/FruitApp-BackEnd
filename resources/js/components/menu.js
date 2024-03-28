@@ -30,7 +30,7 @@ export const menuItems = [
         id: 48,
         label: "User Customer",
         icon: "bx-user",
-        link: "/",
+        link: "/users/customer",
     },
     // Suppliers
     {
