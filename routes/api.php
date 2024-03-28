@@ -24,12 +24,10 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/user/admin', [\App\Http\Controllers\Api\UserAdminApiController::class, 'updateAdmin']);
     Route::delete('/user/admin', [\App\Http\Controllers\Api\UserAdminApiController::class, 'deleteAdmin']);
 
-    Route::get('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'index']);
-    Route::post('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'createAdmin']);
-    Route::put('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'updateAdmin']);
-    Route::delete('/user/customer', [\App\Http\Controllers\Api\UserAdminApiController::class, 'deleteAdmin']);
-
-
+    Route::get('/user/customer', [\App\Http\Controllers\Api\UserCustomerApiController::class, 'index']);
+    Route::post('/user/customer', [\App\Http\Controllers\Api\UserCustomerApiController::class, 'createCustomer']);
+    Route::put('/user/customer', [\App\Http\Controllers\Api\UserCustomerApiController::class, 'updateCustomer']);
+    Route::delete('/user/customer', [\App\Http\Controllers\Api\UserCustomerApiController::class, 'deleteCustomer']);
 
 
 
