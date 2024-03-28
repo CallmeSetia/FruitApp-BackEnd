@@ -24,6 +24,7 @@ class User extends Authenticatable implements LaratrustUser, JWTSubject
         'name', 'email', 'password', 'avatar', 'username',
     ];
 
+    protected $with = ['customer'];
 
     protected $table = 'user';
 
