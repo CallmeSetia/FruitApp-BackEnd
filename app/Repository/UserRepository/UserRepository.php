@@ -133,13 +133,13 @@ class UserRepository implements UserRepositoryInterface
             $dataInputCustomer = $request->only($columnCustomer);
             $customer = $userUser->customer;
 
-            if ($dataInputCustomer->has('foto_identitas')) {
+            if ($request->has('foto_identitas')) {
                 if ($customer && $customer->foto_identitas && Storage::exists('public/' . $customer->foto_identitas)) {
                     // Hapus foto_identitas yang ada dari storage sebelum menyimpan yang baru
                     Storage::delete('public/' . $customer->foto_identitas);
                 }
                 // simpan
-                $file = $dataInputCustomer->file('foto_identitas');
+                $file = $request->file('foto_identitas');
                 $fileName = time() . '_' . trim($file->getClientOriginalName());
                 $dataInputCustomer['foto_identitas'] = $file->storeAs('user/customer/foto_identitas/', $fileName, 'public');
             }
