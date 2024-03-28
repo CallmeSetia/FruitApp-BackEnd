@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Admin\CreateAdminRequest;
 use App\Http\Requests\User\Admin\UpdateAdminRequest;
+use App\Http\Requests\User\Customer\CreateCustomerRequest;
+use App\Http\Requests\User\Customer\UpdateCustomerRequest;
 use App\Services\UserServices;
 use App\Util\Messages;
 use Exception;
@@ -46,7 +48,7 @@ class UserCustomerApiController extends Controller
             return $this->sendError(null, $e->getMessage());
         }
     }
-    public function createCustomer(CreateAdminRequest $request) {
+    public function createCustomer(CreateCustomerRequest $request) {
         try {
             $user = $this->userService->createCustomer($request);
 
@@ -59,7 +61,7 @@ class UserCustomerApiController extends Controller
         }
     }
 
-    public function updateCustomer(UpdateAdminRequest $request) {
+    public function updateCustomer(UpdateCustomerRequest $request) {
         try {
             $user = $this->userService->updateCustomer($request);
 
