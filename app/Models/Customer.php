@@ -15,6 +15,21 @@ class Customer extends Model
 
     protected $table = 'customer';
 
+
+    // Mutator untuk foto_identitas
+    public function setFotoIdentitasAttribute($value)
+    {
+        $this->attributes['foto_identitas'] = $value ? $value : null;
+    }
+
+    // Accessor untuk foto_identitas
+    public function getFotoIdentitasAttribute($value)
+    {
+        return $value ? $value : null;
+    }
+
+
+
     public function user()
     {
         return $this->belongsTo(User::class);
